@@ -1,5 +1,6 @@
 const Student = require('../models/studentModel');
-const path = require('path');
+const Showdata = require('../models/studentModel');
+
 
 const createStudent = async (req, res) => {
     try {
@@ -21,7 +22,7 @@ const createStudent = async (req, res) => {
                 return res.status(500).json({ error: error.message || 'Failed to register student' });
             }
             res.status(201).json({ message: 'Student registered successfully!', studentId: results.insertId });
-            console.log(age,name,guardian_name);
+            console.log(`Registered student: ${name}, Age: ${age}, Guardian: ${guardian_name}`);
         });
     } catch (error) {
         console.error('Error saving student:', error);
@@ -29,4 +30,13 @@ const createStudent = async (req, res) => {
     }
 };
 
-module.exports = { createStudent };
+const showstudent = async (req, res) => {
+    Showdata.getAll((err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+};
+
+module.exports = { createStudent, showstudent };

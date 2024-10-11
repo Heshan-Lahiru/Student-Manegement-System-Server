@@ -2,7 +2,8 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 
-const { createStudent } = require('../controllers/studentController');
+const { createStudent, showstudent } = require('../controllers/studentController');
+
 
 const router = express.Router();
 
@@ -20,5 +21,7 @@ const upload = multer({ storage });
 
 
 router.post('/', upload.single('picture'), createStudent);
+
+router.get('/', showstudent);
 
 module.exports = router;
