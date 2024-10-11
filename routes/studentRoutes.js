@@ -1,9 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-
 const { createStudent, showstudent } = require('../controllers/studentController');
-
 
 const router = express.Router();
 
@@ -17,11 +15,12 @@ const storage = multer.diskStorage({
     },
 });
 
+
 const upload = multer({ storage });
 
 
-router.post('/', upload.single('picture'), createStudent);
+router.post('/students', upload.single('picture'), createStudent); 
 
-router.get('/', showstudent);
+router.get('/students', showstudent);
 
 module.exports = router;

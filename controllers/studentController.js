@@ -31,7 +31,7 @@ const createStudent = async (req, res) => {
 };
 
 const showstudent = async (req, res) => {
-    Showdata.getAll((err, results) => {
+    Showdata.getAll((err, results) => { 
         if (err) {
             return res.status(500).json({ error: err.message });
         }
